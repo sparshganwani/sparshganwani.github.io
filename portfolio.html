@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparsh Ganwani - Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-text: #1A1A1A;
+            --color-text-muted: #666666;
+            --color-accent: #3B82F6;
+            --color-accent-dark: #2563EB;
+            --color-border: #E5E7EB;
+            --color-card-bg: #FAFAFA;
+            --color-gradient-start: #3B82F6;
+            --color-gradient-end: #8B5CF6;
+            --spacing-unit: 1rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-weight: 300;
+            font-size: 16px;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header/Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 0 2rem;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .photo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--color-accent);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            color: white;
+            font-size: 3rem;
+            font-weight: 300;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            color: var(--color-text);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
+            margin: 1.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-muted);
+        }
+        
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+            border-color: var(--color-accent);
+            background: white;
+        }
+        
+        .portfolio-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .portfolio-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+        
+        .portfolio-description {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.9rem;
+            background: rgba(59, 130, 246, 0.08);
+            color: var(--color-accent-dark);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-card:hover .tag {
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+        }
+        
+        .download-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: 6rem;
+        }
+        
+        .footer-content {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .hero {
+                min-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- PHOTO SECTION: Replace the src with your photo -->
+            <div class="photo-container">
+    <img src="sparsh.jpeg" alt="Sparsh Ganwani">
+</div>
+            
+            <h1>Sparsh Ganwani</h1>
+            <p class="hero-subtitle">Product Manager</p>
+            <p class="hero-description">
+                Crafting meaningful product experiences through strategic thinking, 
+                user-centered design, and data-driven decision making.
+            </p>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About My Journey</h2>
+            <div class="about-content">
+                <p>
+                    <!-- EDIT THIS: Replace with your actual journey story -->
+                    From finance to product management, it has been a volatile journey in figuring my interests (my resume is hated by HRs xD).
+                    Nevery found myself a fit in core finance role, solving problems, building for user delight and wearing multiple hats always interested
+                    me - and here I am. A backpacker by heart, athlete since childhood and geek for nutrition and exercise science, always open to interesting
+                    conversations around it.
+                
+                </p>
+                <p>
+                    <!-- EDIT THIS: Add more about your background, skills, or philosophy -->
+                    I believe great products emerge from the intersection of user empathy, business acumen, 
+                    and technical feasibility. My approach centers on continuous learning, collaborative 
+                    problem-solving, and delivering measurable impact through thoughtful product decisions.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                
+                <!-- Project Card 1 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Drawing insights from news with AI in finance</h3>
+                    <p class="portfolio-description">
+                        The project shows AI solves for drawing insights from alternate data.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">New feature</span>
+                        <span class="tag">UX</span>
+                        <span class="tag">Product outcomes</span>
+                    </div>
+                    <a href="News Feature <> Investment OS.pdf" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 2 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Adherence in health</h3>
+                    <p class="portfolio-description">
+                        This is a feature for a health-tech app to incorporate a way to make sure users adhere to what has
+                        been recommended by their doctor, which can range from medicines to lifestyle changes
+
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Product led growth</span>
+                        <span class="tag">Engagement</span>
+                    </div>
+                    <a href="Health AI <> Remote Monitoring.pdf" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 3 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Project Title 3</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Feature Launch</span>
+                        <span class="tag">Growth</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 4 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Project Title 4</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">A/B Testing</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 5 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Project Title 5</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">User Research</span>
+                        <span class="tag">Design Thinking</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 6 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Project Title 6</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Stakeholder Management</span>
+                        <span class="tag">GTM Strategy</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 7 - TEMPLATE -->
+                <div class="portfolio-card">
+                    <h3>Project Title 7</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Platform Development</span>
+                        <span class="tag">API Design</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+                <!-- Project Card 8 - TEMPLATE (add more as needed) -->
+                <div class="portfolio-card">
+                    <h3>Project Title 8</h3>
+                    <p class="portfolio-description">
+                        Brief description of the project, the problem you solved, and the impact you created. 
+                        Keep this concise and focused on outcomes.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Mobile Product</span>
+                        <span class="tag">Agile</span>
+                    </div>
+                    <a href="#" class="download-btn">
+                        <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        View Case Study
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Sparsh Ganwani. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <!-- EDIT THESE: Add your actual social media or contact links -->
+                <a href="sparshganwani5@gmmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/sparshganwani/" target="_blank">LinkedIn</a>
+            </div>
+    
